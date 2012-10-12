@@ -30,20 +30,20 @@ Make sure Cordova points to external links (ex: mlocal.xyz.com)
 You can do this by making sure 
 
 creating this field in to the Cordova.plist file
-<key>ExternalHosts</key>
-<array>
-<string>*</string>
-</array>
+  <key>ExternalHosts</key>
+  <array>
+    <string>*</string>
+  </array>
 
 Make sure you have the plugins you wish to use in your app.
 These can be added by adding them to the Cordova.plist file under
-<key>Plugins</key>
-<dict>
-	<key>Device</key>
-	<string>CDVDevice</string>
-	.
-	.
-	.
+  <key>Plugins</key>
+  <dict>
+	  <key>Device</key>
+	  <string>CDVDevice</string>
+	  .
+	  .
+	  .
 	
 
 ## Future Thoughts
