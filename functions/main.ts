@@ -242,3 +242,90 @@
     }
   }
 }
+##===========##===========##===========##===========##===========##===========##===========##===========##===========
+# This function calls a device with the given message in the scope it is
+@func XMLNode.phonegap_alert(Text %message) {
+  attribute("onclick", "navigator.notification,alert('"+%message+"');")
+}
+
+
+@func XMLNode.phonegap_location_initial_setup() {
+  $("//head") {
+    insert_javascript("function onGeoSuccess(event){document.getElementById('latitude').innerHTML = 'Latitude:'+event.coords.latitude;
+    console.log('initial Setup');
+  	  document.getElementById('longitude').innerHTML = 'Longitude:'+event.coords.longitude;
+      if(nearLocation(event)) {
+        document.getElementById('message').className='mw_visible';
+        stopGetLocation(event);
+      }else {document.getElementById('message').className='mw_hidden';}}") 
+  }
+}
+
+@func XMLNode.insert_getLoc() {
+  $("//head") {
+    insert_javascript("function getLocation(){
+      console.log('getLocation');
+      if(navigator.geolocation){navigator.geolocation.getCurrentPosition(onGeoSuccess,onGeoError);	
+  		}else {alert('Your browser or device doesnt support Geolocation');}}
+  		function onGeoError(event)
+    	{alert('Error code ' + event.code + '. ' + event.message);}
+    	function stopGetLocation(event)
+    	{navigator.geolocation.clearWatch(watchID);}")
+  }
+}
+
+
+@func XMLNode.insert_getLocConst() {
+  $("//head") {
+    insert_javascript("var watchID;
+  	function getLocationConstant(){
+  	  console.log('getLocationConst');
+  		if(navigator.geolocation)	{
+  			watchID = navigator.geolocation.watchPosition(onGeoSuccess,onGeoError);	
+  		}else {
+  			alert('Your device doesnt support Geolocation');}}") 
+  }
+}
+@func XMLNode.insert_error() {
+  $("//head") {
+    insert_javascript("function onGeoError(event){alert('Error code ' + event.code + '. ' + event.message);}")
+  }
+}
+@func XMLNode.insert_stopper() {
+  $("//head") {
+    insert_javascript("function stopGetLocation(event){navigator.geolocation.clearWatch(watchID);}")
+  }
+}
+
+@func XMLNode.insert_nearLoc(Text %message, Text %lat, Text %longi) {
+  $("//body") {
+    insert_bottom("div", class: "mw_hide", id: "mw_nearLocation", data-phgap-val: %message)
+    insert_bottom("div", class: "mw_hide", id: "mw_lati", data-phgap-val: %lat)
+    insert_bottom("div", class: "mw_hide", id: "mw_longi", data-phgap-val: %longi)
+  }
+  $("//head") {
+    insert_javascript("function nearLocation(event) {
+      console.log('nearLocation');
+      var message = document.getElementById('mw_nearLocation').attributes.getNamedItem('data-phgap-val').value;
+      var lati = document.getElementById('mw_lati').attributes.getNamedItem('data-phgap-val').value;
+      var longi = document.getElementById('mw_longi').attributes.getNamedItem('data-phgap-val').value;
+      if((lati-event.coords.latitude < 0.000001) && (lati-event.coords.latitude > (0-0.000001)) && (lati-event.coords.latitude < 0.000001) && (lati-event.coords.latitude > (0-0.000001))) {
+        document.getElementById('message').innerHTML = 'Welcome to '+message+'!';
+        navigator.notification,alert('You Have a New Coupon From '+message+'!');
+        return true;
+      };
+      document.getElementById('message').innerHTML = '';
+      return false;}")
+  }
+}
+
+@func XMLNode.insert_tracker() {
+  # $("//head") {
+  #   insert_javascript("")
+  # }
+  phonegap_location_initial_setup()
+  insert_getLoc()
+  insert_getLocConst()
+  insert_error()
+  insert_stopper()
+}

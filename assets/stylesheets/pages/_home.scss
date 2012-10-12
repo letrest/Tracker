@@ -1,5 +1,40 @@
 // Every page should have a class on the body
 // Scope that in each file at the start
 ._home {
-  
+  .mw_btn {
+    padding: 5px;
+    margin: 2px;
+    background-color: #c4ccc9;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px
+  }
+  #list > * {
+    padding: 10px 0;
+  }
+  .mw_h1 {
+      overflow: hidden;
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, whiteSmoke 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, whiteSmoke));
+      background: -webkit-linear-gradient(top, white 0%, whiteSmoke 100%);
+      background: linear-gradient(top, white 0%,whiteSmoke 100%);
+      font-size: 18px;
+      color: #3232aa;
+      padding: 10px 0 15px;
+      text-align: center;
+  }
+  #message.mw_visible {
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    margin: 2px;
+    background-color: #F4EEF9;
+    border-radius: 3px;
+    color: #555287;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
 }

@@ -3,7 +3,15 @@
 $("/html") {
   rewrite_links()
   absolutize_srcs()
+  $("./HEAD") {
 
+  }
+  $("//meta[@http-equiv='Refresh']") {
+    # log("--> "+fetch(text()))
+    remove()
+    log("--> Metas Removed!!!")
+  }
+  
   
 
   add_assets()

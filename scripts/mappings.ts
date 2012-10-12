@@ -27,6 +27,14 @@ match($status) {
       }
     }
   }
+  with(/404/) {
+    match($path) {
+      with(/\/phonegap/) {
+        log("--> Importing pages/phonegap_home.ts in mappings.ts")
+        @import pages/phonegap_home.ts
+      }
+    }
+  }
 
   else() {
     # not 200 or 302 response status
