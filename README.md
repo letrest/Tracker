@@ -25,7 +25,7 @@ So it show location specific popups, coupons etc.
 
 Clone the project
 
-Make sure Cordova is points to an external link (ex: mlocal.xyz.com)
+Make sure Cordova points to external links (ex: mlocal.xyz.com)
 
 You can do this by making sure 
 
