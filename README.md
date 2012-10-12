@@ -37,4 +37,10 @@ These can be added by adding them to the Cordova.plist file under Plugins
 
 ## Future Thoughts
 
+For this use case,
+You could potentially fire a tracking pixel to literally track where people are geographically. Big Brother is Watching You!
+Reduce polling interval and only poll if the battery level is suitable.
+
+Other use cases:
 Many a Cordova features may be called this way.
+
